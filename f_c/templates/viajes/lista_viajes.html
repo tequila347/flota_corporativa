@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Viajes</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <h1>Lista de Viajes</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Conductor</th>
+            <th>Empresa</th>
+            <th>Fecha</th>
+            <th>Hora Salida</th>
+            <th>Hora Llegada</th>
+            <th>Pasajeros</th>
+        </tr>
+        {% for viaje in viajes %}
+        <tr>
+            <td>{{ viaje.id }}</td>
+            <td>{{ viaje.conductor }}</td>
+            <td>{{ viaje.empresa }}</td>
+            <td>{{ viaje.fecha }}</td>
+            <td>{{ viaje.hora_salida_prog }}</td>
+            <td>{{ viaje.hora_llegada_prog }}</td>
+            <td>
+                {% for pasajero in viaje.pasajeros.all %}
+                    {{ pasajero.n_pasajero }} {{ pasajero.a_pasajero }}<br>
+                {% empty %}
+                    Sin pasajeros
+                {% endfor %}
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="7">No hay viajes registrados</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="{% url 'f_c:registrar_viaje' %}">Registrar nuevo viaje</a>
+</body>
+</html>
