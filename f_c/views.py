@@ -2,6 +2,9 @@ from django.shortcuts import render, redirect
 from .models import Viaje
 from .forms import ViajeForm
 
+def index(request):
+    return render(request, 'viajes/index.html')
+
 def lista_viajes(request):
     viajes = Viaje.objects.all()
     return render(request, 'viajes/lista_viajes.html', {'viajes': viajes})

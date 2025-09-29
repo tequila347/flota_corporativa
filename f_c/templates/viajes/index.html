@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flota Corporativa - Inicio</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- CSS personalizado -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header class="bg-primary text-white text-center py-4">
+        <h1>Gestión de Flota Corporativa</h1>
+        <p>Sistema de transporte de empleados</p>
+    </header>
+
+    <main class="container my-5">
+        <h2 class="text-center mb-4">Bienvenido</h2>
+        <div class="row justify-content-center">
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Iniciar Sesión</h5>
+                        <p class="card-text">Accede con tu cuenta de empleado o administrador.</p>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Registrarse</h5>
+                        <p class="card-text">Crea una nueva cuenta para empleados.</p>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Gestionar Rutas</h5>
+                        <p class="card-text">Crea o edita rutas de transporte.</p>
+                       
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Gestionar Vehículos</h5>
+                        <p class="card-text">Administra la flota de minivans.</p>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Seguimiento de Viajes</h5>
+                        <p class="card-text">Consulta el estado de los viajes.</p>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Mi Perfil</h5>
+                        <p class="card-text">Actualiza tus datos personales.</p>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white text-center py-3">
+        <p>&copy; 2025 Flota Corporativa. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
