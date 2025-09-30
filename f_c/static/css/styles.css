@@ -8,3 +8,6 @@ body {
 .card:hover {
     transform: scale(1.05);
 }
+.form-control:invalid {
+    border-color: #dc3545;
+}

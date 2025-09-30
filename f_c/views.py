@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
-from .models import Viaje
-from .forms import ViajeForm
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
+from django.contrib import messages
+from .models import PerfilUsuario
 
 def index(request):
     return render(request, 'viajes/index.html')
@@ -28,6 +30,37 @@ def logout_view(request):
     logout(request)
     messages.success(request, "Has cerrado sesión correctamente.")
     return redirect('f_c:index')
+
+def registro_view(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        email = request.POST['email']
+        password1 = request.POST['password1']
+        password2 = request.POST['password2']
+        domicilio = request.POST.get('domicilio')
+
+        if password1 != password2:
+            messages.error(request, "Las contraseñas no coinciden.")
+            return render(request, 'viajes/registro.html')
+
+        if User.objects.filter(username=username).exists():
+            messages.error(request, "El nombre de usuario ya está en uso.")
+            return render(request, 'viajes/registro.html')
+
+        if User.objects.filter(email=email).exists():
+            messages.error(request, "El correo electrónico ya está registrado.")
+            return render(request, 'viajes/registro.html')
+
+        # Crear el usuario
+        user = User.objects.create_user(username=username, email=email, password=password1)
+        # Crear el perfil con el domicilio
+        PerfilUsuario.objects.create(user=user, domicilio=domicilio)
+        # Iniciar sesión automáticamente
+        login(request, user)
+        messages.success(request, f"Registro exitoso, {username}!")
+        return redirect('f_c:dashboard')
+
+    return render(request, 'viajes/registro.html')
 
 def lista_viajes(request):
     viajes = Viaje.objects.all()

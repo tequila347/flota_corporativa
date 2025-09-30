@@ -10,4 +10,5 @@ urlpatterns = [
     path('logout/', views.logout_view, name='logout'),
     # Agrega una URL para listar viajes si es necesario
     path('viajes/', views.lista_viajes, name='lista_viajes'),
+    path('registro/', views.registro_view, name='registro'),
 ] 

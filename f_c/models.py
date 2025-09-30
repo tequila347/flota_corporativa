@@ -1,5 +1,6 @@
 from django.db import models
 from datetime import datetime 
+from django.contrib.auth.models import User
 
 class Empresa(models.Model):
     """Se crea la clase Empresa para almacenar datos basicos de la misma """
@@ -74,6 +75,13 @@ class Viaje(models.Model):
                    datetime.combine(self.fecha, self.hora_llegada_prog))
             return delta.total_seconds() / 60
         return None
+    
+class PerfilUsuario(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    domicilio = models.CharField(max_length=255, blank=True, null=True)
+
+    def __str__(self):
+        return f"Perfil de {self.user.username}"
 
  
     
