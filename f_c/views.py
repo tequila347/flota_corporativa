@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
-from .models import PerfilUsuario
+from .models import PerfilUsuario, Viaje
+
 
 def index(request):
     return render(request, 'viajes/index.html')
@@ -68,10 +69,27 @@ def lista_viajes(request):
 
 def registrar_viaje(request):
     if request.method == 'POST':
-        form = ViajeForm(request.POST)
+        form = Viaje(request.POST)
         if form.is_valid():
             form.save()
             return redirect('f_c:lista_viajes')  # Usa el namespace f_c
     else:
-        form = ViajeForm()
+        form = Viaje()
+    return render(request, 'viajes/registrar_viaje.html', {'form': form})
+
+def viajes_view(request):
+    if not request.user.is_authenticated:
+        return redirect('f_c:login')
+    if request.method == 'POST':
+        form = Viaje(request.POST)
+        if form.is_valid():
+            viaje = form.save(commit=False)
+            viaje.user = request.user  # Asociar el viaje al usuario autenticado
+            viaje.save()
+            messages.success(request, "Viaje registrado correctamente.")
+            return redirect('f_c:dashboard')
+        else:
+            messages.error(request, "Por favor, corrige los errores en el formulario.")
+    else:
+        form = Viaje()
     return render(request, 'viajes/registrar_viaje.html', {'form': form})
