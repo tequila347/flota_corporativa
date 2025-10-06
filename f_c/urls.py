@@ -4,7 +4,7 @@ app_name='f_c'
 
 urlpatterns = [
     path('', views.index, name='index'),  # Ruta para la página principal
-    path('registrar/', views.viajes_view, name='registrar_viaje'),
+    path('registrar/', views.registrar_viaje, name='registrar_viaje'),
     path('login/', views.login_view, name='login'),
     path('dashboard/', views.dashboard, name='dashboard'),
     path('logout/', views.logout_view, name='logout'),
